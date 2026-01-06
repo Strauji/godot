@@ -1121,6 +1121,37 @@ void CanvasItem::set_canvas_item_use_identity_transform(bool p_enable) {
 		}
 	}
 }
+bool CanvasItem::_mouse_hit_test(const Vector2 &p_point) { //We'll override this in Sprite2D and Polygon2D
+
+    return false;
+}
+
+void CanvasItem::input(const Ref<InputEvent> &p_event) {
+	Node::input(p_event); //Call parent input first
+	printf("CanvasItem::input\n");
+	Ref<InputEventMouse> mouse_event = p_event;
+	if (mouse_event.is_valid()) {
+    	Vector2 mouse_pos = mouse_event->get_position();
+		
+		if(_mouse_hit_test(mouse_pos))	{ 
+			get_viewport()->set_input_as_handled(); //Stop event propagation if the mouse is inside the item
+			Ref<InputEventMouseButton> mouse_button_event = mouse_event; 
+				if (mouse_button_event.is_valid() && mouse_button_event->is_pressed()) { //If the mouse is over the item and a button is pressed, emit signal
+					emit_signal("mouse_pressed", mouse_button_event->get_button_index());
+				}
+			}	
+			if(!mouse_inside){
+				mouse_inside = true;
+				emit_signal("mouse_entered");
+			}
+	}else{
+		if(mouse_inside){
+			mouse_inside = false;
+			emit_signal("mouse_exited");
+		}
+	}
+	
+}
 
 Rect2 CanvasItem::get_viewport_rect() const {
 	ERR_READ_THREAD_GUARD_V(Rect2());
@@ -1464,7 +1495,7 @@ void CanvasItem::_bind_methods() {
 
 	ClassDB::bind_method(D_METHOD("set_clip_children_mode", "mode"), &CanvasItem::set_clip_children_mode);
 	ClassDB::bind_method(D_METHOD("get_clip_children_mode"), &CanvasItem::get_clip_children_mode);
-
+	ClassDB::bind_method(D_METHOD("input", "event"), &CanvasItem::input);
 	GDVIRTUAL_BIND(_draw);
 
 	ADD_GROUP("Visibility", "");

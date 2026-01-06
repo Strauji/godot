@@ -115,7 +115,8 @@ private:
 	bool notify_local_transform = false;
 	bool notify_transform = false;
 	bool hide_clip_children = false;
-
+	mutable bool mouse_inside = false;
+	
 	ClipChildrenMode clip_children_mode = CLIP_CHILDREN_DISABLED;
 
 	mutable RS::CanvasItemTextureFilter texture_filter_cache = RS::CANVAS_ITEM_TEXTURE_FILTER_LINEAR;
@@ -180,7 +181,8 @@ protected:
 	void item_rect_changed(bool p_size_changed = true);
 
 	void set_canvas_item_use_identity_transform(bool p_enable);
-
+	bool virtual _mouse_hit_test(const Vector2 &p_point) ;
+	void input(const Ref<InputEvent> &p_event) override;
 	void _notification(int p_what);
 	static void _bind_methods();
 
