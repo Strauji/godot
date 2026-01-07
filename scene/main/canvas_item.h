@@ -182,7 +182,7 @@ protected:
 
 	void set_canvas_item_use_identity_transform(bool p_enable);
 	bool virtual _mouse_hit_test(const Vector2 &p_point) ;
-	void input(const Ref<InputEvent> &p_event) override;
+	virtual void input(const Ref<InputEvent> &p_event) override;
 	void _notification(int p_what);
 	static void _bind_methods();
 

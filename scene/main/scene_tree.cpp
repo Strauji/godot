@@ -1402,6 +1402,7 @@ void SceneTree::_add_node_to_process_group(Node *p_node, Node *p_owner) {
 }
 
 void SceneTree::_call_input_pause(const StringName &p_group, CallInputType p_call_type, const Ref<InputEvent> &p_input, Viewport *p_viewport) {
+
 	Vector<Node *> nodes_copy;
 	{
 		_THREAD_SAFE_METHOD_
@@ -1449,6 +1450,7 @@ void SceneTree::_call_input_pause(const StringName &p_group, CallInputType p_cal
 		switch (p_call_type) {
 			case CALL_INPUT_TYPE_INPUT:
 				n->_call_input(p_input);
+				
 				break;
 			case CALL_INPUT_TYPE_SHORTCUT_INPUT: {
 				const Control *c = Object::cast_to<Control>(n);
