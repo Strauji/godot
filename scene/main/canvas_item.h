@@ -115,7 +115,7 @@ private:
 	bool notify_local_transform = false;
 	bool notify_transform = false;
 	bool hide_clip_children = false;
-	mutable bool mouse_inside = false;
+	bool mouse_inside = false;
 	
 	ClipChildrenMode clip_children_mode = CLIP_CHILDREN_DISABLED;
 
