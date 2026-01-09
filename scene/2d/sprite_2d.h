@@ -69,6 +69,7 @@ protected:
 
 	void _validate_property(PropertyInfo &p_property) const;
 	bool _mouse_hit_test(const Vector2 &p_point) override;
+	
 public:
 #ifdef TOOLS_ENABLED
 	virtual Dictionary _edit_get_state() const override;

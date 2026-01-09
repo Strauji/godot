@@ -104,7 +104,7 @@ bool Polygon2D::_edit_is_selected_on_click(const Point2 &p_point, double p_toler
 void Polygon2D::_skeleton_bone_setup_changed() {
 	queue_redraw();
 }
-bool Polygon2D::_mouse_hit_test(const Vector2 &p_point)  {
+bool Polygon2D::_mouse_hit_test(const Vector2 &p_point) {
 	Vector2 local = to_local(p_point);
 	return Geometry2D::is_point_in_polygon(local, polygon);
 }
