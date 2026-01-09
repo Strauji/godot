@@ -1127,29 +1127,29 @@ bool CanvasItem::_mouse_hit_test(const Vector2 &p_point) { //We'll override this
 
 void CanvasItem::input(const Ref<InputEvent> &p_event) { //It needs to be enabled by setting set_process_input(true);
 	if (!is_visible_in_tree()) {
-		return;  // Skip if not visible
-    }
+		return;// Skip if not visible
+	}
 	Ref<InputEventMouse> mouse_event = p_event;
 	if (mouse_event.is_valid()) {
 		Vector2 mouse_pos = mouse_event->get_global_position();
-		if (_mouse_hit_test(mouse_pos))	{ 
+		if (_mouse_hit_test(mouse_pos)) {
 			get_viewport()->set_input_as_handled(); //Stop event propagation if the mouse is inside the item
-			Ref<InputEventMouseButton> mouse_button_event = mouse_event; 
+			Ref<InputEventMouseButton> mouse_button_event = mouse_event;
 			if (mouse_button_event.is_valid() && mouse_button_event->is_pressed()) { //If the mouse is over the item and a button is pressed, emit signal
 				emit_signal("mouse_pressed", mouse_button_event->get_button_index());
 			}
-			if (!mouse_inside){
-				mouse_inside = true; 
+			if (!mouse_inside) {
+				mouse_inside = true;
 				emit_signal("mouse_entered");
 			}
 		} else {
-			if (mouse_inside){
+			if (mouse_inside) {
 				mouse_inside = false;
 				emit_signal("mouse_exited");
 			}
 		}
 	} else {
-		if (mouse_inside){
+		if (mouse_inside) {
 			mouse_inside = false;
 			emit_signal("mouse_exited");
 		}
