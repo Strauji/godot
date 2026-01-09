@@ -475,12 +475,12 @@ void Sprite2D::_validate_property(PropertyInfo &p_property) const {
 	}
 }
 bool Sprite2D::_mouse_hit_test(const Vector2 &p_point) {
-	if (!texture.is_valid()){
+	if (!texture.is_valid()) {
 		return false;
 	}
 	Vector2 local = to_local(p_point);
 	Rect2 rect = get_rect();
-	if (!rect.has_point(local))	{
+	if (!rect.has_point(local)) {
 		return false;
 	}
 	Vector2 uv = (local - rect.position) / rect.size;
