@@ -116,7 +116,6 @@ public:
 	bool get_antialiased() const;
 
 protected:
-
 	void _notification(int p_what);
 	void _draw();
 

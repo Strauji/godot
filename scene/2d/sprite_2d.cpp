@@ -475,20 +475,18 @@ void Sprite2D::_validate_property(PropertyInfo &p_property) const {
 	}
 }
 bool Sprite2D::_mouse_hit_test(const Vector2 &p_point) {
-    if (!texture.is_valid())
-        return false;
-
-    Vector2 local = to_local(p_point);
-    Rect2 rect = get_rect();
-
-    if (!rect.has_point(local))
-        return false;
-
-    Vector2 uv = (local - rect.position) / rect.size;
-    uv *= texture->get_size();
-
-    Color c = texture->get_image()->get_pixelv(uv);
-    return c.a > 0.01;
+	if (!texture.is_valid()){
+		return false;
+	}
+	Vector2 local = to_local(p_point);
+	Rect2 rect = get_rect();
+	if (!rect.has_point(local))	{
+		return false;
+	}
+	Vector2 uv = (local - rect.position) / rect.size;
+	uv *= texture->get_size();
+	Color c = texture->get_image()->get_pixelv(uv);
+	return c.a > 0.01;
 }
 void Sprite2D::_texture_changed() {
 	// Changes to the texture need to trigger an update to make

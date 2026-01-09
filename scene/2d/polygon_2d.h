@@ -76,7 +76,7 @@ class Polygon2D : public Node2D {
 	RID mesh;
 
 protected:
-	bool _mouse_hit_test(const Vector2 &p_point) override ;
+	bool _mouse_hit_test(const Vector2 &p_point) override;
 	void _notification(int p_what);
 	static void _bind_methods();
 

@@ -105,8 +105,8 @@ void Polygon2D::_skeleton_bone_setup_changed() {
 	queue_redraw();
 }
 bool Polygon2D::_mouse_hit_test(const Vector2 &p_point)  {
-    Vector2 local = to_local(p_point);
-    return Geometry2D::is_point_in_polygon(local, polygon);
+	Vector2 local = to_local(p_point);
+	return Geometry2D::is_point_in_polygon(local, polygon);
 }
 void Polygon2D::_notification(int p_what) {
 	if (p_what == NOTIFICATION_TRANSFORM_CHANGED && !Engine::get_singleton()->is_editor_hint()) {
