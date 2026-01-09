@@ -116,7 +116,7 @@ private:
 	bool notify_transform = false;
 	bool hide_clip_children = false;
 	bool mouse_inside = false;
-	
+
 	ClipChildrenMode clip_children_mode = CLIP_CHILDREN_DISABLED;
 
 	mutable RS::CanvasItemTextureFilter texture_filter_cache = RS::CANVAS_ITEM_TEXTURE_FILTER_LINEAR;
