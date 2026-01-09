@@ -1154,7 +1154,6 @@ void CanvasItem::input(const Ref<InputEvent> &p_event) { //It needs to be enable
 			emit_signal("mouse_exited");
 		}
 	}
-	
 }
 
 Rect2 CanvasItem::get_viewport_rect() const {
