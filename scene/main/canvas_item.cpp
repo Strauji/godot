@@ -1127,7 +1127,9 @@ bool CanvasItem::_mouse_hit_test(const Vector2 &p_point) { //We'll override this
 }
 
 void CanvasItem::input(const Ref<InputEvent> &p_event) { //It needs to be enabled by setting set_process_input(true);
-	
+	if (!is_visible_in_tree()) {
+        return;  // Skip if not visible
+    }
 	Ref<InputEventMouse> mouse_event = p_event;
 	if (mouse_event.is_valid()) {
     	Vector2 mouse_pos = mouse_event->get_global_position();
